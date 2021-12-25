@@ -1,22 +1,27 @@
 <template>
-  <HelloWorld v-model:realResult="realResult" @real-result="handleRes" msg="Welcome to Your Vue.js App"/>
-  <ul>
-  
-  <li v-for="(post, i) in object" :key="i + 1">
-    <buttonMy :id="i" />
-  </li>
-  <buttonMy :id="'+'">+</buttonMy>
-  <buttonMy :id="'-'">-</buttonMy>
-  <buttonMy :id="'*'">*</buttonMy>
-  <buttonMy :id="'/'">/</buttonMy>
-  <buttonMy :id="'^'">^</buttonMy>
-  </ul>
-  <p> Калькулятор работает только с простыми действиями: 1 + 2!</p>
+<p> Калькулятор работает только с простыми действиями: 1 + 2!</p>
+  <MyMain v-model:realResult="realResult" @real-result="handleRes" msg="Welcome to Your Vue.js App"/>
+    <table class="table_numbers">
+      <tr v-for="(post, i) in object" :key="i + 1">
+        <td v-for="(post, j) in len_table" :key="j + 1">
+          <buttonMy :id="i * table_len_amount + j" />
+        </td>
+      </tr>
+    </table>
+    <table class="table_operations">
+      <tr>
+        <td>  <buttonMy class="plus" :id="'+'">+</buttonMy>  </td>
+        <td>  <buttonMy class="minus" :id="'-'">-</buttonMy>  </td>
+        <td>  <buttonMy class="multiply" :id="'*'">*</buttonMy> </td>
+        <td>  <buttonMy class="divide" :id="'/'">/</buttonMy> </td>
+        <td>  <buttonMy class="power" :id="'^'">^</buttonMy>  </td>
+      </tr>
+    </table>
 </template>
 
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MyMain from './components/MainHtml.vue'
 import buttonMy from './components/Button.vue'
 
 export default {
@@ -32,21 +37,20 @@ export default {
     object: [
       {number: 0},
       {number: 1},
-      {number: 2},
-      {number: 3},
-      {number: 4},
-      {number: 5},
-      {number: 6},
-      {number: 7},
-      {number: 8},
-      {number: 9}
+      {number: 2}
+    ],
+    len_table: [
+      {number: 0},
+      {number: 1},
+      {number: 2}
     ],
     realResult: "",
     something: "",
+    table_len_amount: 3,
     };
   },
   components: {
-    HelloWorld,
+    MyMain,
     buttonMy
   },
   methods: {
@@ -55,8 +59,6 @@ export default {
     }
   }
 }
-
-
 </script>
 
 <style>
@@ -69,7 +71,16 @@ export default {
   margin-top: 60px;
 }
 
+.table_numbers {
+  margin-left: 47.25%;
+}
+
+.table_operations {
+  margin-left: 45.75%;
+}
+
+
 li {
-    list-style-type: none; /* Убираем маркеры */
+    list-style-type: none;
    }
 </style>
