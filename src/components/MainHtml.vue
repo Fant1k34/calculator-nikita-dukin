@@ -1,21 +1,28 @@
 <template>
-  <div class="hello">
-
-    <input id="ItIs" :value="result" v-on:input="result = $event.target.value" > <!-- v-on:input="result = $event.target.value" -->
-
-    <button id="=" :onclick="doMath">
-      =
-    </button>
-
-    <button id="clear" :onclick="deleteAll">
-      clear
-    </button>
+  <div class="MyMain">
+    <div class="InputClass">
+      <input :value="result" v-on:input="result = $event.target.value" >
+    </div>
+    <table class="input_operations">
+      <tr>
+        <td>
+          <button id="=" :onclick="doMath">
+            =
+          </button>
+        </td>
+        <td>
+          <button :onclick="deleteAll">
+            clear
+          </button>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'MainHtml',
   data: function() {
     return { 
       result: "",
@@ -23,11 +30,10 @@ export default {
   },
   methods: {
     doMath: function() {
-      // Прошу прощения, но я питонист, поэтому switch не люблю ;)
-      var component = document.getElementById("ItIs");
+      console.log(document.getElementsByTagName("input"));
+      let component = document.getElementsByTagName("input")[0];
       this.result = component.value;
-      var something;
-      console.log(something)
+      let something;
 
       if (this.result.split("").filter(x => (x == "+") || (x == "-") || (x == "-") || (x == "/") || (x == "^")).lenght != 1) {
         component.value = "0"
@@ -62,15 +68,18 @@ export default {
   deleteAll: function() {
     this.realResult = "";
     this.result = "";
-    var component = document.getElementById("ItIs");
+    let component = document.getElementsByTagName("input")[0];
     component.value = "";
     return
     }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+table {
+  width: 5%;
+  margin-left: 47.5%;
+  border: 0ch;
+}
 
 </style>
