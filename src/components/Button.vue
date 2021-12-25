@@ -17,14 +17,12 @@ export default {
     }
   },
   methods: {
-    writeNumber: function(){
-    var component = document.getElementById("ItIs");
-    component.value += this.id;
-    // console.log(component);
-    // component.textContent += this.id;
+    writeNumber: function() {
+      var component = document.getElementsByTagName("input")[0];
+      component.value += this.id;
+      }
+    }
   }
-  }
-}
 </script>
 
 <style>
